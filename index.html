@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>إلى ميدو ❤️</title>
+<style>
+*{box-sizing:border-box}
+body{
+margin:0;
+font-family:Arial,Tahoma,sans-serif;
+background:linear-gradient(135deg,#170b19,#3b1025,#160b20);
+color:white;
+min-height:100vh;
+overflow:hidden
+}
+.screen{
+display:none;
+min-height:100vh;
+padding:35px 22px;
+align-items:center;
+justify-content:center;
+text-align:center
+}
+.screen.active{display:flex}
+.card{
+width:100%;
+max-width:430px;
+padding:30px 22px;
+border-radius:30px;
+background:rgba(255,255,255,.09);
+border:1px solid rgba(255,255,255,.15);
+box-shadow:0 20px 60px rgba(0,0,0,.4);
+backdrop-filter:blur(15px)
+}
+h1{font-size:35px;margin:10px 0 15px}
+h2{font-size:26px;margin:10px 0 18px}
+p{font-size:17px;line-height:1.9;color:#f5dfe8}
+.heart{
+font-size:65px;
+animation:pulse 1.5s infinite
+}
+@keyframes pulse{
+50%{transform:scale(1.15)}
+}
+button{
+border:0;
+border-radius:18px;
+padding:15px 22px;
+margin:7px;
+font-size:17px;
+font-weight:bold;
+cursor:pointer;
+background:#ff4f81;
+color:white;
+box-shadow:0 8px 20px rgba(255,79,129,.25)
+}
+button.secondary{
+background:rgba(255,255,255,.12)
+}
+.option{
+display:block;
+width:100%;
+margin:10px 0;
+background:rgba(255,255,255,.1);
+border:1px solid rgba(255,255,255,.15)
+}
+.option.selected{
+background:#ff4f81;
+transform:scale(1.02)
+}
+input{
+width:100%;
+padding:15px;
+border:0;
+border-radius:15px;
+font-size:17px;
+text-align:center;
+margin:10px 0 15px
+}
+.letter{
+text-align:right;
+background:rgba(0,0,0,.15);
+padding:20px;
+border-radius:20px;
+line-height:2;
+font-size:17px
+}
+.small{font-size:14px;color:#dcbac7}
+.confetti{
+position:fixed;
+top:-20px;
+font-size:22px;
+animation:fall 4s linear forwards;
+pointer-events:none
+}
+@keyframes fall{
+to{transform:translateY(110vh) rotate(720deg);opacity:0}
+}
+</style>
+</head>
+
+<body>
+
+<section class="screen active" id="s1">
+<div class="card">
+<div class="heart">❤️</div>
+<h1>إلى ميدو</h1>
+<p>عندي شي صغير إلكِ...</p>
+<p>بس أريدج تمشين وياي للآخر ❤️</p>
+<button onclick="next(2)">يلا نمشي؟ 🌷</button>
+</div>
+</section>
+
+<section class="screen" id="s2">
+<div class="card">
+<h2>ميدو ❤️</h2>
+<p>عندي سؤال مهم جداً...</p>
+<h1>تطلعين وياي بموعد؟ 🥹</h1>
+<button onclick="next(3)">أكيد ❤️</button>
+<button class="secondary" onclick="next(3)">خل أشوف شنو مخطط 😏</button>
+</div>
+</section>
+
+<section class="screen" id="s3">
+<div class="card">
+<h2>اختاري اليوم 📅</h2>
+<p>أي يوم تحبين يكون موعدنا؟</p>
+<input type="date" id="date">
+<button onclick="saveDate()">اختاري هذا اليوم ❤️</button>
+</div>
+</section>
+
+<section class="screen" id="s4">
+<div class="card">
+<h2>شنو تحبين نسوي؟ 🌷</h2>
+<p>اختاري الأشياء اللي تحبينها</p>
+
+<button class="option" onclick="pick(this)">🚶‍♂️ نمشي سوا</button>
+<button class="option" onclick="pick(this)">☕ قهوة وسوالف</button>
+<button class="option" onclick="pick(this)">🎬 فلم</button>
+<button class="option" onclick="pick(this)">🌹 ورد ومفاجأة</button>
+<button class="option" onclick="pick(this)">✈️ نحچي عن سفراتنا</button>
+
+<button onclick="next(5)">خلصت الاختيار ❤️</button>
+</div>
+</section>
+
+<section class="screen" id="s5">
+<div class="card">
+<h2>والأكل؟ 😋</h2>
+<p>اختاري شنو نفسك بيه</p>
+
+<button class="option" onclick="pick(this)">🍕 بيتزا</button>
+<button class="option" onclick="pick(this)">🍔 برگر</button>
+<button class="option" onclick="pick(this)">🍝 باستا</button>
+<button class="option" onclick="pick(this)">🍰 حلو وكوفي</button>
+
+<button onclick="next(6)">تم 😍</button>
+</div>
+</section>
+
+<section class="screen" id="s6">
+<div class="card">
+<div class="heart">🎁</div>
+<h2>عندي مفاجأة...</h2>
+<p>تتوقعين شنو هي؟ 👀</p>
+
+<button class="option" onclick="next(7)">🌹 ورد</button>
+<button class="option" onclick="next(7)">🎁 هدية</button>
+<button class="option" onclick="next(7)">❤️ شي من قلبي</button>
+</div>
+</section>
+
+<section class="screen" id="s7">
+<div class="card">
+<div class="heart">❤️</div>
+<h1>المفاجأة...</h1>
+<p>مو ورد، ومو هدية...</p>
+<h2>المفاجأة هي إنتِ. ❤️</h2>
+<p>لأن وجودج بحياتي هو أحلى شي صار إلي.</p>
+<button onclick="next(8)">عندي كلام إلكِ 🌷</button>
+</div>
+</section>
+
+<section class="screen" id="s8">
+<div class="card">
+<h2>منّي إلكِ، ميدو ❤️</h2>
+
+<div class="letter">
+من بين كل الأيام، وكل الناس، وكل الطرق اللي ممكن نمشي بيها بالحياة...
+
+إنتِ الشخص اللي أتخيل وياه الأيام الجاية، السفرات، الضحك، التعب، القهوة، والذكريات اللي بعدنا ما عشناها.
+
+يمكن نختلف، ويمكن نزعل من بعض، بس الشي اللي أعرفه إنّي كل مرة أرجع أختارج إنتِ. ❤️
+
+أحبج يا ميدو. 🌷
+
+وموعدنا الجاي مو مجرد موعد،
+هو ذكرى جديدة أريد أصنعها وياج.
+</div>
+
+<button onclick="next(9)">آخر شي ❤️</button>
+</div>
+</section>
+
+<section class="screen" id="s9">
+<div class="card">
+<div class="heart">💍</div>
+<h1>ميدو ❤️</h1>
+<p id="finalText">
+أريد كل موعد بينا يكون بداية لذكرى جديدة...
+وبالنهاية أريد كل أيامي تكون وياج.
+</p>
+<h2>أحبج ❤️</h2>
+<button onclick="celebrate()">اضغطي هنا 🌹</button>
+</div>
+</section>
+
+<script>
+function next(n){
+document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));
+document.getElementById('s'+n).classList.add('active');
+window.scrollTo(0,0);
+}
+
+function saveDate(){
+let d=document.getElementById('date').value;
+if(!d){
+alert('اختاري يوم أولاً ❤️');
+return;
+}
+localStorage.setItem('midoDate',d);
+next(4);
+}
+
+function pick(el){
+el.classList.toggle('selected');
+}
+
+function celebrate(){
+for(let i=0;i<70;i++){
+let x=document.createElement('div');
+x.className='confetti';
+x.innerHTML=['❤️','🌹','💕','✨','💗','🌷'][Math.floor(Math.random()*6)];
+x.style.left=Math.random()*100+'vw';
+x.style.animationDelay=Math.random()*1.5+'s';
+x.style.fontSize=(15+Math.random()*20)+'px';
+document.body.appendChild(x);
+setTimeout(()=>x.remove(),5000);
+}
+document.getElementById('finalText').innerHTML=
+'إذا وصلتي لهنا... فمعناها صار عندنا موعد جديد وذكرى جديدة ❤️<br><br>وأنا بانتظارج يا ميدو 🌹';
+}
+</script>
+
+</body>
+</html>
